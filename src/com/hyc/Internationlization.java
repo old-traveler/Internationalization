@@ -66,12 +66,7 @@ public class Internationlization extends AnAction {
     }
 
     private String getTargetLanguageCode(AnActionEvent e) {
-        SelectFromListDialog dialog = new SelectFromListDialog(e.getProject(), Language.getAllLanguage(), new SelectFromListDialog.ToStringAspect() {
-            @Override
-            public String getToStirng(Object o) {
-                return o.toString();
-            }
-        }, "选择目标语言", ListSelectionModel.SINGLE_SELECTION);
+        SelectFromListDialog dialog = new SelectFromListDialog(e.getProject(), Language.getAllLanguage(), o -> o.toString(), "选择目标语言", ListSelectionModel.SINGLE_SELECTION);
         dialog.show();
         String select = dialog.getSelection()[0].toString();
         return select.split(" ")[1];
