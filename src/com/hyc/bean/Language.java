@@ -1,11 +1,11 @@
-package com.hyc;
+package com.hyc.bean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Language {
 
-    static Object[] getAllLanguage() {
+    public static Object[] getAllLanguage() {
         List<String> language = new ArrayList<>();
         language.add("中文 zh-CHS");
         language.add("英文 en");

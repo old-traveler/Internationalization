@@ -1,5 +1,7 @@
-package com.hyc;
+package com.hyc.utils;
 
+import com.hyc.net.Api;
+import com.hyc.bean.Result;
 import com.intellij.psi.xml.XmlDocument;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;

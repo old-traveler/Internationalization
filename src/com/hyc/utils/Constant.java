@@ -1,4 +1,4 @@
-package com.hyc;
+package com.hyc.utils;
 
 public class Constant {
 
