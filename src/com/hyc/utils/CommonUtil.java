@@ -2,7 +2,6 @@ package com.hyc.utils;
 
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -13,21 +12,6 @@ import java.util.Map;
  */
 
 public class CommonUtil {
-
-
-    public static Map getParams(String query, String from, String to) {
-        String salt = String.valueOf(System
-                .currentTimeMillis());
-        Map params = new HashMap();
-        params.put("q", query);
-        params.put("from", from);
-        params.put("to", to);
-        params.put("ext", "mp3");
-        params.put("sign", getSign(salt, query));
-        params.put("salt", salt);
-        params.put("appKey", Constant.APP_KEY);
-        return params;
-    }
 
     public static Map getParams(String query,String to) {
         String salt = String.valueOf(System
@@ -75,26 +59,6 @@ public class CommonUtil {
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             return null;
         }
-    }
-
-
-    /**
-     * 进行URL编码
-     *
-     * @param input
-     * @return
-     */
-    public static String encode(String input) {
-        if (input == null) {
-            return "";
-        }
-        try {
-            return URLEncoder.encode(input, "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return input;
     }
 
 
