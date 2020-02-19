@@ -7,6 +7,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.SelectFromListDialog;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
@@ -23,7 +24,7 @@ public class Internationlization extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         PsiFile file = e.getData(DataKeys.PSI_FILE);
         if (!checkFile(file)) {
-            System.err.println("非法源文件");
+            Messages.showErrorDialog("错误","请选择strings.xml");
             return;
         }
         XmlFile xmlFile = (XmlFile) file;
