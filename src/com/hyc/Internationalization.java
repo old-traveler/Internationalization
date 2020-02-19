@@ -18,7 +18,7 @@ import org.apache.http.util.TextUtils;
 import javax.swing.*;
 
 
-public class Internationlization extends AnAction {
+public class Internationalization extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
