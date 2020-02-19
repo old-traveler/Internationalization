@@ -12,6 +12,7 @@ import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.xml.XmlDocument;
 import com.intellij.psi.xml.XmlFile;
+import org.apache.http.util.TextUtils;
 
 import javax.swing.*;
 
@@ -28,21 +29,23 @@ public class Internationlization extends AnAction {
         XmlFile xmlFile = (XmlFile) file;
         ConvertHelper convertHelper = new ConvertHelper(xmlFile);
         String targetCode = getTargetLanguageCode(e);
-        XmlDocument xmlDocument = convertHelper.convert(targetCode);
-        generateTargetFile(xmlFile, targetCode, xmlDocument);
+        if (!TextUtils.isEmpty(targetCode)){
+            XmlDocument xmlDocument = convertHelper.convert(targetCode);
+            generateTargetFile(xmlFile, targetCode, xmlDocument);
+        }
     }
 
     private void generateTargetFile(XmlFile xmlFile, String targetCode, XmlDocument xmlDocument) {
         ApplicationManager.getApplication().runWriteAction(() -> {
             PsiDirectory directory = null;
-            for (PsiDirectory subdirectory : xmlFile.getParent().getSubdirectories()) {
+            for (PsiDirectory subdirectory : xmlFile.getParent().getParent().getSubdirectories()) {
                 if (subdirectory.getName().equals("value-" + targetCode)) {
                     directory = subdirectory;
                     break;
                 }
             }
             if (directory == null) {
-                directory = xmlFile.getParent().createSubdirectory("value-" + targetCode);
+                directory = xmlFile.getParent().getParent().createSubdirectory("value-" + targetCode);
             }
             XmlFile targetFile = null;
             for (PsiFile directoryFile : directory.getFiles()) {
@@ -71,7 +74,11 @@ public class Internationlization extends AnAction {
     private String getTargetLanguageCode(AnActionEvent e) {
         SelectFromListDialog dialog = new SelectFromListDialog(e.getProject(), Language.getAllLanguage(), o -> o.toString(), "选择目标语言", ListSelectionModel.SINGLE_SELECTION);
         dialog.show();
-        String select = dialog.getSelection()[0].toString();
+        Object[] selects =  dialog.getSelection();
+        if (selects == null || selects.length == 0){
+            return null;
+        }
+        String select = selects[0].toString();
         return select.split(" ")[1];
     }
 }
