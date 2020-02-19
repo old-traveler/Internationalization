@@ -26,9 +26,13 @@ public class Internationlization extends AnAction {
             return;
         }
         XmlFile xmlFile = (XmlFile) file;
-        ConvertHelper convert = new ConvertHelper(xmlFile);
+        ConvertHelper convertHelper = new ConvertHelper(xmlFile);
         String targetCode = getTargetLanguageCode(e);
-        XmlDocument xmlDocument = convert.convert(targetCode);
+        XmlDocument xmlDocument = convertHelper.convert(targetCode);
+        generateTargetFile(xmlFile, targetCode, xmlDocument);
+    }
+
+    private void generateTargetFile(XmlFile xmlFile, String targetCode, XmlDocument xmlDocument) {
         ApplicationManager.getApplication().runWriteAction(() -> {
             PsiDirectory directory = null;
             for (PsiDirectory subdirectory : xmlFile.getParent().getSubdirectories()) {
@@ -53,12 +57,11 @@ public class Internationlization extends AnAction {
             targetFile = (XmlFile) directory.createFile("strings.xml");
 
             XmlFile finalTargetFile = targetFile;
-            WriteCommandAction.runWriteCommandAction(e.getProject(), () -> {
-                finalTargetFile.getDocument().add(xmlDocument);
-            }
+            WriteCommandAction.runWriteCommandAction(xmlFile.getProject(), () -> {
+                        finalTargetFile.getDocument().add(xmlDocument);
+                    }
             );
         });
-
     }
 
     private boolean checkFile(PsiFile file) {

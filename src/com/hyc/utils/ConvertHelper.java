@@ -18,7 +18,9 @@ public class ConvertHelper {
     }
 
     public XmlDocument convert(String targetCode) {
-        XmlDocument document = (XmlDocument) file.getDocument().copy();
+        XmlDocument document = file.getDocument();
+        if(document == null) return null;
+        document = (XmlDocument) document.copy();
         Api api = RetrofitUtil.getInstance().create(Api.class);
         if (document != null && document.getFirstChild() != null) {
             XmlTag tag = document.getRootTag();
