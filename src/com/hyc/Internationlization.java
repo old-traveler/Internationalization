@@ -39,13 +39,13 @@ public class Internationlization extends AnAction {
         ApplicationManager.getApplication().runWriteAction(() -> {
             PsiDirectory directory = null;
             for (PsiDirectory subdirectory : xmlFile.getParent().getParent().getSubdirectories()) {
-                if (subdirectory.getName().equals("value-" + targetCode)) {
+                if (subdirectory.getName().equals("values-" + targetCode)) {
                     directory = subdirectory;
                     break;
                 }
             }
             if (directory == null) {
-                directory = xmlFile.getParent().getParent().createSubdirectory("value-" + targetCode);
+                directory = xmlFile.getParent().getParent().createSubdirectory("values-" + targetCode);
             }
             XmlFile targetFile = null;
             for (PsiFile directoryFile : directory.getFiles()) {
