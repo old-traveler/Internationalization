@@ -6,12 +6,15 @@
 
 ## Effect display
 
+### 源字符资源文件
  <div>
-  <img src="https://raw.githubusercontent.com/old-traveler/Internationalization/master/image/original.png" width = "1280" height= "800">
+  <img src="https://raw.githubusercontent.com/old-traveler/Internationalization/master/image/original.png" width = "640" height= "400">
  </div>
 
+### 英文字符资源文件
+
  <div>
-   <img src="https://raw.githubusercontent.com/old-traveler/Internationalization/master/image/result.png" width = "1280" height= "800">
+   <img src="https://raw.githubusercontent.com/old-traveler/Internationalization/master/image/result.png" width = "640" height= "400">
   </div>
 
 ## How To Use
