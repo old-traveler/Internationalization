@@ -19,6 +19,20 @@
 
 ## How To Use
 
+### Step 1
+
+下载Internationalization.zip并使用Idea或者AndroidStudio安装此插件
+
+### Step 2
+
+选择目标strings.xml 右键选择Internationalization选项，并选择目标语言即可
+
+## Matters needing attention
+此插件使用有道智云翻译api，翻译次数有限，请节约使用，如需大量使用，请自行去有道智云平台申请账号并将Constant中配置的APP_ID和密钥替换成自己的。
+
+
+
+
 
 
 
