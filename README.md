@@ -17,7 +17,7 @@
    <img src="https://raw.githubusercontent.com/old-traveler/Internationalization/master/image/result.png" width = "640" height= "400">
   </div>
 
-## How To Use
+## How to use
 
 ### Step 1
 
