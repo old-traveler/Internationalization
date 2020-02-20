@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class CommonUtil {
 
-    public static Map getParams(String query,String to) {
+    public static Map getParams(String query, String to) {
         String salt = String.valueOf(System
                 .currentTimeMillis());
         Map params = new HashMap();
